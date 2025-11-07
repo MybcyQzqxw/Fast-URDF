@@ -913,18 +913,29 @@ def download_msedgedriver(download_msedgedriver_path):
         print_info_edge_existed(version, msedgedriver_path)
         return msedgedriver_path
 
-    url = f"https://msedgedriver.azureedge.net/{version}/edgedriver_win64.zip"
+    # 使用新的微软官方CDN域名，并提供旧域名作为备选
+    urls = [
+        f"https://msedgedriver.microsoft.com/{version}/edgedriver_win64.zip",
+        f"https://msedgedriver.azureedge.net/{version}/edgedriver_win64.zip"
+    ]
 
-    response = get(url)
-    if response.status_code == 200:
-        with ZipFile(BytesIO(response.content)) as z:
-            z.extractall(download_msedgedriver_path)
-        print_info_edge_download(download_msedgedriver_path)
-        return msedgedriver_path
-    else:
-        print_ten_pentagram()
-        print_error_edge_download(version)
-        return None
+    # 尝试从多个URL下载
+    for url in urls:
+        try:
+            response = get(url, timeout=30)
+            if response.status_code == 200:
+                with ZipFile(BytesIO(response.content)) as z:
+                    z.extractall(download_msedgedriver_path)
+                print_info_edge_download(download_msedgedriver_path)
+                return msedgedriver_path
+        except Exception as e:
+            print(f" --> 尝试从 {url} 下载失败，尝试下一个地址...")
+            continue
+    
+    # 所有URL都失败
+    print_ten_pentagram()
+    print_error_edge_download(version)
+    return None
 
 # 配置 Selenium 的 Edge 驱动
 def setup_driver(download_msedgedriver_path, download_dir):
