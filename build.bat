@@ -1,32 +1,32 @@
 @echo off
-:: 清理旧的构建文件和目录
-echo 正在清理旧的构建文件...
+:: Clean old build files and directories
+echo Cleaning old build files...
 
 if exist "build" (
-    echo 删除 build 目录...
+    echo Deleting build directory...
     rmdir /s /q "build"
 )
 
 if exist "dist" (
-    echo 删除 dist 目录...
+    echo Deleting dist directory...
     rmdir /s /q "dist"
 )
 
 if exist "myenv" (
-    echo 删除 myenv 目录...
+    echo Deleting myenv directory...
     rmdir /s /q "myenv"
 )
 
 if exist "Fast URDF.spec" (
-    echo 删除 Fast URDF.spec 文件...
+    echo Deleting Fast URDF.spec file...
     del /f /q "Fast URDF.spec"
 )
 
-echo 清理完成！
+echo Cleanup complete!
 echo.
 
-:: 创建虚拟环境
-echo 创建虚拟环境...
+:: Create virtual environment
+echo Creating virtual environment...
 python -m venv myenv
 
 :: 激活虚拟环境
