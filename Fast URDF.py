@@ -1,3 +1,6 @@
+# 版本号
+__version__ = '1.3'
+
 import sys
 from os import path, listdir, makedirs, remove, rename
 from shutil import rmtree
@@ -23,9 +26,6 @@ from openpyxl.styles import Font, Alignment, Border, Side
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QFileDialog, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton, QSizePolicy
 from PyQt5.QtGui import QIcon
-
-# 版本号
-__version__ = '1.3'
 
 # 报错及提示输出包装函数
 
