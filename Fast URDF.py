@@ -24,6 +24,9 @@ from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QFileDialog, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton, QSizePolicy
 from PyQt5.QtGui import QIcon
 
+# 版本号
+__version__ = '1.3'
+
 # 报错及提示输出包装函数
 
 # 报错提示
@@ -1484,7 +1487,7 @@ class MainWindow(QWidget):
             }
         """)
 
-        self.setWindowTitle('Fast URDF 1.2 -- by Mxqwthl')  # 主窗口名称
+        self.setWindowTitle(f'Fast URDF {__version__} -- by Mxqwthl')  # 主窗口名称
         self.setGeometry(100, 100, 900, 556)  # 主窗口位置和大小
 
         # 设置图标路径
