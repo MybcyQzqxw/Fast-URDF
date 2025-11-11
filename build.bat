@@ -29,17 +29,17 @@ echo.
 echo Creating virtual environment...
 python -m venv myenv
 
-:: 激活虚拟环境
+:: Activate virtual environment
 call myenv\Scripts\activate
 
-:: 升级 pip 到最新版本
+:: Upgrade pip to the latest version
 python.exe -m pip install --upgrade pip
 
-:: 安装依赖
+:: Install dependencies
 pip install -r requirements.txt
 
-:: 安装 pyinstaller
+:: Install pyinstaller
 pip install pyinstaller
 
-:: 使用 pyinstaller 打包程序
+:: Use pyinstaller to package the program
 pyinstaller --noconsole --onefile --icon="favicon.ico" --add-data "favicon.ico;." "Fast URDF.py"
