@@ -1,4 +1,8 @@
 @echo off
+:: Activate conda environment
+echo Activating conda environment fast_urdf...
+call conda activate fast_urdf
+
 :: Clean old build files and directories
 echo Cleaning old build files...
 
