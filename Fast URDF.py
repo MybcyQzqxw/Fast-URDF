@@ -19,6 +19,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+
+# PyInstaller 在静态分析时有时无法检测到 selenium 的某些子模块（比如
+# selenium.webdriver.edge.webdriver），这会导致运行时出现
+# ModuleNotFoundError: No module named 'selenium.webdriver.edge.webdriver'
+# 通过在源代码中显式导入这些子模块，可以让 PyInstaller 将它们包含进打包结果。
+try:
+    # 显式导入 edge 的 webdriver 子模块，供 PyInstaller 识别
+    import selenium.webdriver.edge.webdriver as _selenium_edge_webdriver
+    import selenium.webdriver.edge.service as _selenium_edge_service
+    import selenium.webdriver.edge.options as _selenium_edge_options
+except Exception:
+    # 在开发环境或未安装 selenium 时，忽略导入错误；运行时依然会按原逻辑抛出
+    pass
 from xml.etree.ElementTree import parse
 from re import search
 from openpyxl import Workbook, load_workbook
